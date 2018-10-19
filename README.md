@@ -15,10 +15,10 @@ Infinitely load content using a React Component. This fork maintains a simple, l
 ## Installation
 
 ```
-npm install react-infinite-scroller --save
+npm install darklight721/react-infinite-scroller --save
 ```
 ```
-yarn add react-infinite-scroller
+yarn add darklight721/react-infinite-scroller
 ```
 
 ## How to use
