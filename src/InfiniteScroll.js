@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce';
 
 export default class InfiniteScroll extends Component {
   static propTypes = {
@@ -36,6 +37,11 @@ export default class InfiniteScroll extends Component {
     super(props);
 
     this.scrollListener = this.scrollListener.bind(this);
+
+    this.loadMoreIfNotScrollable = debounce(
+      this.loadMoreIfNotScrollable.bind(this),
+      150,
+    );
   }
 
   componentDidMount() {
@@ -45,6 +51,7 @@ export default class InfiniteScroll extends Component {
 
   componentDidUpdate() {
     this.attachScrollListener();
+    this.loadMoreIfNotScrollable();
   }
 
   componentWillUnmount() {
@@ -176,6 +183,21 @@ export default class InfiniteScroll extends Component {
       if (typeof this.props.loadMore === 'function') {
         this.props.loadMore((this.pageLoaded += 1));
       }
+    }
+  }
+
+  loadMoreIfNotScrollable() {
+    const { isReverse, useWindow, hasMore, threshold } = this.props;
+
+    if (isReverse || useWindow || !hasMore) {
+      return;
+    }
+
+    const el = this.scrollComponent;
+    const parentNode = this.getParentElement(el);
+
+    if (el.scrollHeight - threshold < parentNode.clientHeight) {
+      this.scrollListener();
     }
   }
 

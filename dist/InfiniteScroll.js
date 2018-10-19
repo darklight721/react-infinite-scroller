@@ -29,6 +29,10 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
+var _lodash = require('lodash.debounce');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
@@ -96,6 +100,11 @@ var InfiniteScroll = (function(_Component) {
     );
 
     _this.scrollListener = _this.scrollListener.bind(_this);
+
+    _this.loadMoreIfNotScrollable = (0, _lodash2.default)(
+      _this.loadMoreIfNotScrollable.bind(_this),
+      150,
+    );
     return _this;
   }
 
@@ -111,6 +120,7 @@ var InfiniteScroll = (function(_Component) {
       key: 'componentDidUpdate',
       value: function componentDidUpdate() {
         this.attachScrollListener();
+        this.loadMoreIfNotScrollable();
       },
     },
     {
@@ -265,6 +275,27 @@ var InfiniteScroll = (function(_Component) {
           if (typeof this.props.loadMore === 'function') {
             this.props.loadMore((this.pageLoaded += 1));
           }
+        }
+      },
+    },
+    {
+      key: 'loadMoreIfNotScrollable',
+      value: function loadMoreIfNotScrollable() {
+        var _props = this.props,
+          isReverse = _props.isReverse,
+          useWindow = _props.useWindow,
+          hasMore = _props.hasMore,
+          threshold = _props.threshold;
+
+        if (isReverse || useWindow || !hasMore) {
+          return;
+        }
+
+        var el = this.scrollComponent;
+        var parentNode = this.getParentElement(el);
+
+        if (el.scrollHeight - threshold < parentNode.clientHeight) {
+          this.scrollListener();
         }
       },
     },
