@@ -196,6 +196,10 @@ export default class InfiniteScroll extends Component {
     const el = this.scrollComponent;
     const parentNode = this.getParentElement(el);
 
+    if (!el || !parentNode) {
+      return;
+    }
+
     if (el.scrollHeight - threshold < parentNode.clientHeight) {
       this.scrollListener();
     }

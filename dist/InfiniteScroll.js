@@ -294,6 +294,10 @@ var InfiniteScroll = (function(_Component) {
         var el = this.scrollComponent;
         var parentNode = this.getParentElement(el);
 
+        if (!el || !parentNode) {
+          return;
+        }
+
         if (el.scrollHeight - threshold < parentNode.clientHeight) {
           this.scrollListener();
         }
