@@ -56,7 +56,7 @@ function _classCallCheck(instance, Constructor) {
 function _possibleConstructorReturn(self, call) {
   if (!self) {
     throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called",
+      "this hasn't been initialised - super() hasn't been called"
     );
   }
   return call && (typeof call === 'object' || typeof call === 'function')
@@ -68,7 +68,7 @@ function _inherits(subClass, superClass) {
   if (typeof superClass !== 'function' && superClass !== null) {
     throw new TypeError(
       'Super expression must either be null or a function, not ' +
-        typeof superClass,
+        typeof superClass
     );
   }
   subClass.prototype = Object.create(superClass && superClass.prototype, {
@@ -95,15 +95,15 @@ var InfiniteScroll = (function(_Component) {
       this,
       (InfiniteScroll.__proto__ || Object.getPrototypeOf(InfiniteScroll)).call(
         this,
-        props,
-      ),
+        props
+      )
     );
 
     _this.scrollListener = _this.scrollListener.bind(_this);
 
     _this.loadMoreIfNotScrollable = (0, _lodash2.default)(
       _this.loadMoreIfNotScrollable.bind(_this),
-      150,
+      150
     );
     return _this;
   }
@@ -149,7 +149,7 @@ var InfiniteScroll = (function(_Component) {
         scrollEl.removeEventListener(
           'mousewheel',
           this.mousewheelListener,
-          this.props.useCapture,
+          this.props.useCapture
         );
       },
     },
@@ -164,12 +164,12 @@ var InfiniteScroll = (function(_Component) {
         scrollEl.removeEventListener(
           'scroll',
           this.scrollListener,
-          this.props.useCapture,
+          this.props.useCapture
         );
         scrollEl.removeEventListener(
           'resize',
           this.scrollListener,
-          this.props.useCapture,
+          this.props.useCapture
         );
       },
     },
@@ -207,17 +207,17 @@ var InfiniteScroll = (function(_Component) {
         scrollEl.addEventListener(
           'mousewheel',
           this.mousewheelListener,
-          this.props.useCapture,
+          this.props.useCapture
         );
         scrollEl.addEventListener(
           'scroll',
           this.scrollListener,
-          this.props.useCapture,
+          this.props.useCapture
         );
         scrollEl.addEventListener(
           'resize',
           this.scrollListener,
-          this.props.useCapture,
+          this.props.useCapture
         );
 
         if (this.props.initialLoad) {
