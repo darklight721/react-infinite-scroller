@@ -189,7 +189,7 @@ export default class InfiniteScroll extends Component {
   loadMoreIfNotScrollable() {
     const { isReverse, useWindow, hasMore, threshold } = this.props;
 
-    if (isReverse || useWindow || !hasMore) {
+    if (useWindow || !hasMore) {
       return;
     }
 
@@ -200,7 +200,11 @@ export default class InfiniteScroll extends Component {
       return;
     }
 
-    if (el.scrollHeight - threshold < parentNode.clientHeight) {
+    const isNotScrollable = isReverse
+      ? el.scrollTop - threshold < 0
+      : el.scrollHeight - threshold < parentNode.clientHeight;
+
+    if (isNotScrollable) {
       this.scrollListener();
     }
   }
