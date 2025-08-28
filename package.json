@@ -1,6 +1,6 @@
 {
   "name": "react-infinite-scroller",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Infinite scroll component for React in ES6",
   "main": "index.js",
   "jsnext:main": "src/InfiniteScroll.js",
@@ -33,6 +33,7 @@
     "url": "https://github.com/CassetteRocks/react-infinite-scroller/issues"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
@@ -63,7 +64,6 @@
     "istanbul": "^0.4.5",
     "jsdom": "^10.0.0",
     "lint-staged": "^4.3.0",
-    "lodash.debounce": "^4.0.8",
     "mocha": "^3.3.0",
     "nyc": "^10.2.0",
     "prettier": "^1.7.4",
